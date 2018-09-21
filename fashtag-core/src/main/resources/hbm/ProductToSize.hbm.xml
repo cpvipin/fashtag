@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.ProductToSize" 
+   table="product_to_size" 
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+      <many-to-one
+            name="product"
+            class="com.org.fashtag.model.Product"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="product_id" 
+            />
+        </many-to-one>
+        
+        
+        <many-to-one
+            name="size"
+            class="com.org.fashtag.model.Size"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="size_id" 
+            />
+        </many-to-one>
+    
+    
+    
+</class>
+
+<query name="ps.getProductSizesByProduct"><![CDATA[
+select si.name from ProductToSize as pi inner join  pi.size as si where pi.product.id=:productId and si.activeStatus=true
+]]></query>
+
+
+<query name="prod.ProductToSize"><![CDATA[
+from ProductToSize where product.id=:productId and size.id=:sizeId ]]></query>
+
+</hibernate-mapping>

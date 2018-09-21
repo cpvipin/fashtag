@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.DeliveryAvailablity" 
+   table="delivery_availablity"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+<property
+            name="pincode"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="pincode"
+            length="7"
+    />
+    
+    
+    
+   
+   
+<property
+            name="activeStatus"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="active_status"
+            
+/>
+
+   
+
+    
+</class>
+
+
+<query name="delAvail.isDeliveryAvailable"><![CDATA[
+from DeliveryAvailablity where pincode=:pincode and activeStatus=true ]]></query>
+
+</hibernate-mapping>

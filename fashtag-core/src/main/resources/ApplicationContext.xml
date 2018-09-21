@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans 
+	 xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:mvc="http://www.springframework.org/schema/mvc"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xsi:schemaLocation="http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+ 
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:/database.properties</value>
+		</property>
+	</bean>
+ 
+ 
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${db.driverClassName}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+	
+	
+	<bean id="baseDaoImpl" lazy-init="true" class="com.org.fashtag.dao.impl.BaseDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+	
+	<!-- Hibernate session factory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    	<property name="dataSource">
+    		<ref bean="dataSource"/>
+    	</property>
+    	<property name="hibernateProperties">
+    		<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+    		</props>
+    	</property>
+  
+
+  
+  	<property name="mappingResources">
+			<list>
+			<value>/hbm/AdminUser.hbm.xml</value>
+			<value>/hbm/Category.hbm.xml</value>
+			<value>/hbm/Vendor.hbm.xml</value>
+			<value>/hbm/Product.hbm.xml</value>
+			<value>/hbm/Size.hbm.xml</value>
+			<value>/hbm/DesignAttribute.hbm.xml</value>
+			<value>/hbm/ProductToSize.hbm.xml</value>
+			<value>/hbm/ProductToDesignAttributeSpecification.hbm.xml</value>
+			<value>/hbm/ProductImages.hbm.xml</value>
+			<value>/hbm/DesignAttributeSpecification.hbm.xml</value>
+			<value>/hbm/Customer.hbm.xml</value>
+			<value>/hbm/CustomerIp.hbm.xml</value>
+			<value>/hbm/State.hbm.xml</value>
+			<value>/hbm/CustomerAddress.hbm.xml</value>
+			<value>/hbm/CustomerBodyMeasurement.hbm.xml</value>
+			<value>/hbm/BodyMeasurementAttribute.hbm.xml</value>
+			<value>/hbm/OrdersStatus.hbm.xml</value>
+			<value>/hbm/Orders.hbm.xml</value>
+			<value>/hbm/OrderProduct.hbm.xml</value>
+			<value>/hbm/OrderHistory.hbm.xml</value>
+			<value>/hbm/CustomerProfile.hbm.xml</value>
+			<value>/hbm/LayoutPreference.hbm.xml</value>
+			<value>/hbm/BannerImages.hbm.xml</value>
+			<value>/hbm/DeliveryAvailablity.hbm.xml</value>
+			<value>/hbm/ReturnStatus.hbm.xml</value>
+			<value>/hbm/Returns.hbm.xml</value>
+			<value>/hbm/ReturnProduct.hbm.xml</value>
+			<value>/hbm/ReturnHistory.hbm.xml</value>
+			<value>/hbm/ReturnReason.hbm.xml</value>
+			<value>/hbm/CustomerCare.hbm.xml</value>
+			
+			</list>
+		</property>
+		
+    </bean>
+    
+</beans>

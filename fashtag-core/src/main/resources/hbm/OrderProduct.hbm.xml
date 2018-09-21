@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.OrderProduct"
+   table="order_product"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+      
+    
+   
+   
+     <many-to-one
+            name="order"
+            class="com.org.fashtag.model.Orders"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="orders_id" 
+            />
+        </many-to-one>
+        
+        
+        
+   
+     <many-to-one
+            name="product"
+            class="com.org.fashtag.model.Product"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="product_id" 
+            />
+        </many-to-one>
+        
+        
+        
+        <many-to-one
+            name="size"
+            class="com.org.fashtag.model.Size"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="size_id" 
+            />
+        </many-to-one>
+        
+        
+<property
+            name="quantity"
+            type="integer"
+            update="true"
+            insert="true"
+            column="quantity"
+    />
+    
+    
+    
+<property
+            name="unitPrice"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            column="unit_price"
+    />
+    
+    
+<property
+            name="totalAmount"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            column="total_amount"
+    />
+        
+        
+<property
+            name="designAttributeSpecification"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="design_attribute_specification	"
+    />
+    
+   
+
+</class>
+</hibernate-mapping>

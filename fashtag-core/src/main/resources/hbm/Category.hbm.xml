@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.Category" 
+   table="category">
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+<property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+            length="255"
+            unique="true"
+    />
+    
+    <property
+            name="icon"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="icon"
+            length="100"
+    />
+    
+      <many-to-one
+            name="parent"
+            class="com.org.fashtag.model.Category"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="parent_id" 
+            />
+        </many-to-one>
+    
+    
+      <property
+            name="sortOrder"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="sort_order"
+    />
+    
+    
+    
+   
+   
+<property
+            name="activeStatus"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="active_status"
+            
+/>
+
+   
+<property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"
+            
+/>
+
+ 
+<property
+            name="dateModified"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_modified"
+            
+/>
+
+
+<set
+            name="childCategory"
+            lazy="false"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+<key  column="parent_id"></key>
+<one-to-many class="com.org.fashtag.model.Category"/>
+</set>
+
+
+    
+</class>
+
+
+<query name="ca.getChildCategories"><![CDATA[
+select ca.name,ca.id from Category as ca where ca.id not in (select c2.parent.id from Category as c2 where c2.parent.id=ca.id) 
+and ca.name like :name and ca.activeStatus=true  ]]></query>
+
+<query name="ca.getParentCategoriesByStatus"><![CDATA[
+select ca.name,ca.id,ca.icon from Category as ca where ca.activeStatus=:activeStatus and ca.parent is null order by sortOrder]]></query>
+
+
+<query name="ca.getLeafNodesOfCategoryById"><![CDATA[
+from Category as ca where ca.parent.id =:catId and ca.activeStatus=true  ]]></query>
+</hibernate-mapping>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.ReturnStatus"
+   table="return_status" 
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+      
+    
+   
+   
+<property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+            length="16"
+    />
+    
+    
+     
+      <property
+            name="activeStatus"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="active_status"
+    />
+    
+   
+   
+
+</class>
+
+
+
+        <query name="retStat.getReturnStatusByName"><![CDATA[
+from ReturnStatus as retStat  where retStat.name=:name 
+        ]]></query>
+
+
+
+</hibernate-mapping>

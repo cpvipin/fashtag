@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.Customer"
+   table="customer">
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+      
+    
+   
+   
+<property
+            name="fullName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="full_name"
+            length="100"
+    />
+    
+    
+     
+      <property
+            name="gender"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="gender"
+    />
+    
+   
+   
+   
+<property
+            name="email"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="email"
+            length="96"
+            unique="true"
+    />
+    
+    
+   <property
+            name="phone"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="phone"
+            length="32"
+            unique="true"
+    />
+    
+   
+   
+     
+   <property
+            name="password"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="password"
+            length="32"
+    />
+    
+   
+     
+<property
+            name="activeStatus"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="active_status"
+            
+/>
+   
+   <property
+            name="isAdminAdded"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="is_admin_added"
+            
+/>
+
+ <property
+            name="isFirstLogin"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="is_first_login"
+            
+/>
+
+
+     
+   
+<property
+            name="newsLetter"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="news_letter"
+            
+/>
+   
+
+<property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"          
+/>
+
+ 
+<property
+            name="dateModified"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_modified"
+            
+/>
+
+<property
+            name="wishList"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="wish_list"
+    />
+    
+    
+    
+<property
+            name="cart"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="cart"
+    />
+    
+
+</class>
+
+ <query name="cust.authenticateByUserIdPassword"><![CDATA[
+from Customer as cust  where (cust.email=:userId or cust.phone=:userId) and password=:password 
+        ]]></query>
+        
+        <query name="cust.getCustomerByUserId"><![CDATA[
+from Customer as cust  where (cust.email=:userId or cust.phone=:userId) 
+        ]]></query>
+
+
+ <query name="cust.getCustomerWishList"><![CDATA[
+select wishList from Customer as cust  where cust.id=:custId 
+        ]]></query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.AdminUser" 
+   table="admin_user"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+<property
+            name="username"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="username"
+            length="20"
+    />
+    
+    <property
+            name="password"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="password"
+            length="40"
+    />
+    
+    
+<property
+            name="activeStatus"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="active_status"
+            
+/>
+
+   
+<property
+            name="lastLogin"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="last_login"
+            
+/>
+    
+</class>
+</hibernate-mapping>

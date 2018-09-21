@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.CustomerProfile" 
+   table="customer_profile"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+     
+        
+        
+        <many-to-one
+            name="customer"
+            class="com.org.fashtag.model.Customer"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="customer_id" 
+            />
+        </many-to-one>
+        
+        
+    
+     
+      <property
+            name="gender"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="gender"
+    />
+    
+   
+   
+   
+    <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+            length="15"
+    />
+    
+    <property
+            name="isDefault"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="is_default"
+    />
+    
+    <property
+            name="dateModified"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_modified"
+    />
+    
+    
+    
+       <property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"
+    />
+    
+    
+    
+    
+<set
+            name="customerMeasurements"
+            lazy="false"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+<key  column="customer_profile_id"></key>
+<one-to-many class="com.org.fashtag.model.CustomerBodyMeasurement"/>
+</set>
+    
+  
+    
+    
+</class>
+
+<query name="custprof.getProfileByCustomerId"><![CDATA[
+from CustomerProfile as cp where  cp.customer.id=:custId ]]></query>
+
+
+
+<query name="custprof.getAllCustomerProfileByCustomerId"><![CDATA[
+from CustomerProfile as cp where  cp.customer.id=:custId ]]></query>
+
+
+<query name="custprof.getDefaultProfile"><![CDATA[
+from CustomerProfile as cp where  cp.customer.id=:custId and cp.isDefault=:isDefault ]]></query>
+
+
+</hibernate-mapping>

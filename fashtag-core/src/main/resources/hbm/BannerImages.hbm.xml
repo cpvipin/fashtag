@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.BannerImages" 
+   table="banner_images"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+     
+      
+    <property
+            name="layoutName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="layout_name"
+            length="128"
+    />
+    
+    
+    <property
+            name="filterId"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="filter_id"
+    />
+    
+      <property
+            name="image"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="image"
+            length="1000"
+    />
+    
+       <property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"
+    />
+    
+    
+</class>
+
+
+
+<query name="bannerImage.getBannerImageByLayoutAndFilter"><![CDATA[
+from  BannerImages as bi where bi.layoutName=:layout and bi.filterId=:filterId ]]></query>
+
+</hibernate-mapping>

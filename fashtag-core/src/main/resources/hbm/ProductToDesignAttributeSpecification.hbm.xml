@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.ProductToDesignAttributeSpecification" 
+   table="product_to_design_attribute_specification" 
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+      <many-to-one
+            name="product"
+            class="com.org.fashtag.model.Product"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="product_id" 
+            />
+        </many-to-one>
+        
+        
+        <many-to-one
+            name="designAttributeSpecification"
+            class="com.org.fashtag.model.DesignAttributeSpecification"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="design_attribute_specification_id" 
+            />
+        </many-to-one>
+    
+    
+    
+    
+    <property
+            name="isRecommended"
+            type="java.lang.Boolean"
+            update="true"
+            insert="true"
+            column="is_recommended"
+    />
+    
+    
+</class>
+
+
+ <query name="ptd.productToDesignAttributeSpecCount"><![CDATA[
+      select count(ptd.id)  from ProductToDesignAttributeSpecification as ptd where ptd.product.id=:productId 
+ ]]></query>
+
+</hibernate-mapping>

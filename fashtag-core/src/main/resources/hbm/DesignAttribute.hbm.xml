@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.DesignAttribute" 
+   table="design_attribute"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+<property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+            length="20"
+            unique="true"
+    />
+    
+    <property
+            name="description"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="description"
+    />
+    
+<property
+            name="activeStatus"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="active_status"
+            
+/>
+
+<property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"
+            
+/>
+    
+    
+    
+<property
+            name="dateModified"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_modified"
+            
+/>
+    
+  <property
+            name="sortOrder"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="sort_order"
+    />
+    
+    
+        <property
+            name="displayText"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="display_text"
+    />
+    
+    
+    
+    <set
+            name="designAttributeSpecifications"
+            lazy="false"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+<key  column="design_attribute_id"></key>
+<one-to-many class="com.org.fashtag.model.DesignAttributeSpecification"/>
+</set>
+
+    
+</class>
+
+
+<query name="prod.getDesignAttributesByProduct"><![CDATA[
+select dats.designAttribute,dats.name,dats.id from DesignAttributeSpecification as dats inner join  dats.designAttribute as dat where dat.id in(select das.designAttribute.id from ProductToDesignAttributeSpecification as pds inner join  pds.designAttributeSpecification as das where pds.product.id=:productId) order by dat.name
+]]></query>
+
+
+
+
+
+
+</hibernate-mapping>

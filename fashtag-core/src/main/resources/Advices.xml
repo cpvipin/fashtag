@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<bean id="EmailNotificationAdvisor"  lazy-init="true"
+		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice">
+			<ref local="EmailNotificationAdvice" />
+		</property>
+		<property name="patterns">
+			<value>.*</value>
+		</property>
+	</bean>
+	
+<!--ADVICE-->
+	 <bean id="EmailNotificationAdvice"  lazy-init="true" class="com.org.fashtag.aop.EmailNotifier">
+		<!-- Methods which are to be considered for invoking Email Notification -->
+		<constructor-arg index="0">
+			<list>
+				<value>updatePaymentStatus</value>
+				<value>createCustomer</value>
+			</list>
+		</constructor-arg>
+	</bean>
+	 
+	 <!-- ############################# fashtag SMS Notification Advice ###################### -->
+	 
+<!-- <bean id="SmsNotificationAdvisor" lazy-init="true"
+		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice">
+			<ref local="SmsNotificationAdvice" />
+		</property>
+		<property name="patterns">
+			<value>.*</value>
+		</property>
+	</bean>
+	
+ADVICE
+	 <bean id="SmsNotificationAdvice" lazy-init="true" class="com.org.fashtag.aop.SmsNotifiers">
+		Methods which are to be considered for invoking Email Notification
+		<constructor-arg index="0">
+			<list>
+				<value>createCustomer</value>
+			</list>
+		</constructor-arg>
+	</bean> -->
+	 
+	 
+	 
+	 
+	
+		
+	
+
+</beans>

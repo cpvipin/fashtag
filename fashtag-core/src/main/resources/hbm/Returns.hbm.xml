@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.Returns"
+   table="returns" 
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+      <many-to-one
+            name="customer"
+            class="com.org.fashtag.model.Customer"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="customer_id" 
+            />
+        </many-to-one>
+        
+        
+        <many-to-one
+            name="returnStatus"
+            class="com.org.fashtag.model.ReturnStatus"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="return_status_id" 
+            />
+        </many-to-one>
+    
+    
+     <many-to-one
+            name="orders"
+            class="com.org.fashtag.model.Orders"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="order_id" 
+            />
+        </many-to-one>
+    
+   
+   
+<property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"
+            
+/>
+
+ 
+<property
+            name="dateModified"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_modified"
+            
+/>
+
+
+  <property
+            name="totalAmount"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            column="total_amount"
+    />
+    
+
+ <set
+            name="returnProduct"
+            lazy="false"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+<key  column="returns_id"></key>
+<one-to-many class="com.org.fashtag.model.ReturnProduct"/>
+</set>
+
+
+
+ <set
+            name="returnHistory"
+            lazy="false"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+<key  column="returns_id"></key>
+<one-to-many class="com.org.fashtag.model.ReturnHistory"/>
+</set>
+    
+    
+    
+  
+</class>
+
+
+ <query name="returns.getReturnsByCustomer"><![CDATA[
+from Returns as returns where returns.customer.id=:custId order by returns.dateAdded desc
+        ]]></query>
+
+
+</hibernate-mapping>

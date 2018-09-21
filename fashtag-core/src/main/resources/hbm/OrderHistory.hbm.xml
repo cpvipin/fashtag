@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.OrderHistory"
+   table="order_history"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+      
+    
+   
+   
+     <many-to-one
+            name="order"
+            class="com.org.fashtag.model.Orders"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="orders_id" 
+            />
+        </many-to-one>
+        
+        
+        
+   
+     <many-to-one
+            name="ordersStatus"
+            class="com.org.fashtag.model.OrdersStatus"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="order_status_id" 
+            />
+        </many-to-one>
+        
+       
+        
+<property
+            name="notify"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="notify"
+    />
+    
+    
+    
+<property
+            name="comment"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="comment"
+    />
+    
+    
+<property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"
+    />
+   
+
+</class>
+</hibernate-mapping>

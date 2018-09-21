@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.LayoutPreference" 
+   table="layout_preference"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+     
+        
+        
+        <many-to-one
+            name="category"
+            class="com.org.fashtag.model.Category"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="category_id" 
+            />
+        </many-to-one>
+        
+        
+    
+    <property
+            name="layoutName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="layout_name"
+            length="20"
+    />
+    
+       <property
+            name="countLimit"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="count_limit"
+    />
+    
+           <property
+            name="activeStatus"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="active_status"
+    />
+    
+    
+  
+    
+    
+</class>
+
+</hibernate-mapping>

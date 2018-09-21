@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.ReturnProduct"
+   table="return_product" 
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+      
+    
+   
+   
+     <many-to-one
+            name="returns"
+            class="com.org.fashtag.model.Returns"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="returns_id" 
+            />
+        </many-to-one>
+        
+        
+        
+   
+     <many-to-one
+            name="Product"
+            class="com.org.fashtag.model.Product"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="product_id" 
+            />
+        </many-to-one>
+        
+        
+        
+        
+        
+        
+<property
+            name="quantity"
+            type="integer"
+            update="true"
+            insert="true"
+            column="quantity"
+    />
+    
+    
+    
+<property
+            name="unitPrice"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            column="unit_price"
+    />
+    
+    
+<property
+            name="totalAmount"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            column="total_amount"
+    />
+        
+  
+
+</class>
+</hibernate-mapping>

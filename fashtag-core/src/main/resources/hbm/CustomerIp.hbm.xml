@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.CustomerIp" 
+   table="customer_ip">
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+     
+        
+        
+        <many-to-one
+            name="customer"
+            class="com.org.fashtag.model.Customer"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="customer_id" 
+            />
+        </many-to-one>
+        
+        
+    
+    <property
+            name="ipAddress"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ip_address"
+            length="15"
+    />
+    
+       <property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"
+    />
+    
+    
+  
+    
+    
+</class>
+
+</hibernate-mapping>

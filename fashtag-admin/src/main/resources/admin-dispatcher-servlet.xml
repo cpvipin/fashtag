@@ -1,0 +1,164 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- Enable annotation driven controllers, validation etc... -->
+	<!-- <import resource="classpath:ApplicationContext.xml" /> -->
+	<mvc:annotation-driven />
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/index.htm" />
+			<mvc:exclude-mapping path="/login.htm" />
+			<bean class="com.org.fashtag.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
+
+	<context:component-scan base-package="com.org.fashtag" />
+	<context:annotation-config />
+	
+	<bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+    
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/view/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	
+	 <bean id="adminUserDao" lazy-init="true" class="com.org.fashtag.dao.impl.AdminUserDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+    
+    
+    <bean id="categoryDao" lazy-init="true" class="com.org.fashtag.dao.impl.CategoryDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+    
+      <bean id="productDao" lazy-init="true" class="com.org.fashtag.dao.impl.ProductDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+    
+      <bean id="vendorDao" lazy-init="true" class="com.org.fashtag.dao.impl.VendorDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+    
+     <bean id="designAttributeDao" lazy-init="true" class="com.org.fashtag.dao.impl.DesignAttributeDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+    
+     <bean id="sizeDao" lazy-init="true" class="com.org.fashtag.dao.impl.SizeDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+    
+    
+    
+     <bean id="customerDao" lazy-init="true" class="com.org.fashtag.dao.impl.CustomerDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+    
+    
+     <bean id="bodyMeasurementAttributeDao" lazy-init="true" class="com.org.fashtag.dao.impl.BodyMeasurementAttributeDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+    
+    
+    <bean id="ordersDao" lazy-init="true" class="com.org.fashtag.dao.impl.OrdersDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+    
+    
+    
+    
+    
+      <bean id="adminUserService" lazy-init="true" class="com.org.fashtag.service.impl.AdminUserServiceImpl">
+        <property name="adminUserDao">
+            <ref bean="adminUserDao" />
+        </property>
+            <property name="ordersDao">
+            <ref bean="ordersDao" />
+        </property>
+    </bean>
+    
+    
+     <bean id="categoryService" lazy-init="true" class="com.org.fashtag.service.impl.CategoryServiceImpl">
+        <property name="categoryDao">
+            <ref bean="categoryDao" />
+        </property>
+    </bean>
+    
+    <bean id="productService" lazy-init="true" class="com.org.fashtag.service.impl.ProductServiceImpl">
+        <property name="productDao">
+            <ref bean="productDao" />
+        </property>
+    </bean>
+    
+    <bean id="vendorService" lazy-init="true" class="com.org.fashtag.service.impl.VendorServiceImpl">
+        <property name="vendorDao">
+            <ref bean="vendorDao" />
+        </property>
+    </bean>
+    
+    <bean id="designAttributeService" lazy-init="true" class="com.org.fashtag.service.impl.DesignAttributeServiceImpl">
+        <property name="designAttributeDao">
+            <ref bean="designAttributeDao" />
+        </property>
+    </bean>
+    
+    <bean id="sizeService" lazy-init="true" class="com.org.fashtag.service.impl.SizeServiceImpl">
+        <property name="sizeDao">
+            <ref bean="sizeDao" />
+        </property>
+    </bean>
+    
+
+    <bean id="customerService" lazy-init="true" class="com.org.fashtag.service.impl.CustomerServiceImpl">
+        <property name="customerDao">
+            <ref bean="customerDao" />
+        </property>
+    </bean>
+    
+     <bean id="bodyMeasurementAttributeService" lazy-init="true" class="com.org.fashtag.service.impl.BodyMeasurementAttributeServiceImpl">
+        <property name="bodyMeasurementAttributeDao">
+            <ref bean="bodyMeasurementAttributeDao" />
+        </property>
+    </bean>
+   
+    <bean id="ordersService" lazy-init="true" class="com.org.fashtag.service.impl.OrdersServiceImpl">
+        <property name="ordersDao">
+            <ref bean="ordersDao" />
+        </property>
+    </bean>
+   
+    
+</beans>

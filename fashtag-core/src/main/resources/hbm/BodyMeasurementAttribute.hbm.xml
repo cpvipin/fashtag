@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.BodyMeasurementAttribute" 
+   table="body_measurement_attribute"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+<property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+            length="128"
+    />
+    
+    <property
+            name="gender"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="gender"
+    />
+  
+<property
+            name="isRequired"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="is_required"
+            
+/>  
+    
+<property
+            name="activeStatus"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="active_status"
+            
+/>
+
+   
+<property
+            name="description"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="description"
+            
+/>
+    
+</class>
+
+
+</hibernate-mapping>

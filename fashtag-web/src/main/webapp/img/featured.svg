@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+]>
+<svg version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="78px" height="78px" viewBox="0 0 78 78" enable-background="new 0 0 78 78" xml:space="preserve">
+<g>
+	<polygon fill="#BA003A" points="66.344,7.016 67.188,8 64,8 	"/>
+	<polygon fill="#BA003A" points="9,40.614 8.372,39.986 7.391,66.016 9.016,67.096 	"/>
+	<g>
+		<image overflow="visible" opacity="0.45"  a:adobe-opacity-share="1" width="78" height="78" xlink:href="BFCE4CFE.png" >
+		</image>
+		<g>
+			<polygon fill="#FF3368" points="66.386,7 7.372,66.027 7.343,40.807 41.098,7 			"/>
+		</g>
+	</g>
+	<g>
+		
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 16.2134 50.9453)" fill="#FFFFFF" font-family="'Lato-Bold'" font-size="10.3774">FEATURED</text>
+	</g>
+</g>
+</svg>

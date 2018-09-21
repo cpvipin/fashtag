@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+]>
+<svg version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="13.428px" height="12.212px" viewBox="0 0 13.428 12.212" enable-background="new 0 0 13.428 12.212"
+	 xml:space="preserve">
+<g>
+	<g>
+		<polygon fill="#BDBDBD" points="8.057,1.948 8.057,0 6.698,0.53 5.338,0 5.338,1.948 6.698,1.418 		"/>
+		<path fill="#BDBDBD" d="M11.344,11.233l2.084,0.07l-1.58-9.421l-0.022-0.138L9.116,0.641L6.714,6.5L4.313,0.641L1.604,1.744
+			L0,11.303l2.085-0.07l0.916-5.19l0.021,1.031L2.8,10.074l-0.229,2.138h3.261l0.882-1.603l0.881,1.603h3.262l-0.229-2.138
+			L10.408,7.07l0.02-1.029L11.344,11.233z M9.869,4.863h-1.61V4.259h1.61V4.863z"/>
+	</g>
+</g>
+</svg>

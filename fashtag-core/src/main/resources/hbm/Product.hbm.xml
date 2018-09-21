@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.Product"
+   table="product"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+      <many-to-one
+            name="category"
+            class="com.org.fashtag.model.Category"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="category_id" 
+            />
+        </many-to-one>
+        
+        <many-to-one
+            name="vendor"
+            class="com.org.fashtag.model.Vendor"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="vendor_id" 
+            />
+        </many-to-one>
+    
+    
+<property
+            name="isFeatured"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="is_featured"
+            
+/>  
+  
+   
+      <property
+            name="gender"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="gender"
+    />
+   
+<property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="name"
+            length="255"
+    />
+    
+    
+     
+      <property
+            name="quantity"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="quantity"
+    />
+    
+   
+   
+   
+<property
+            name="defaultImage"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="default_image"
+            length="255"
+    />
+    
+    
+   
+   
+   
+   
+<property
+            name="actualPrice"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            column="actual_price"
+            length="255"
+    /> 
+    
+    
+   
+   
+   
+   
+<property
+            name="offerPrice"
+            type="java.math.BigDecimal"
+            update="true"
+            insert="true"
+            column="offer_price"
+            length="255"
+    /> 
+    
+    
+    
+<property
+            name="dateAvailable"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_available"
+            
+/>
+
+ 
+ 
+ 
+    
+<property
+            name="activeStatus"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="active_status"
+            
+/>
+
+   
+<property
+            name="dateAdded"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_added"
+            
+/>
+
+ 
+<property
+            name="dateModified"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="date_modified"
+            
+/>
+
+
+<property
+            name="description"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="description"
+
+    />
+    
+    
+
+<property
+            name="actualColor"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="actual_color"
+
+    />
+
+
+
+<property
+            name="totalLikes"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="total_likes"
+
+    />
+    
+    <property
+            name="totalViews"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="total_views"
+
+    />
+    
+    
+    
+    <set
+            name="productToSize"
+            lazy="false"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+<key  column="product_id"></key>
+<one-to-many class="com.org.fashtag.model.ProductToSize"/>
+</set>
+
+
+<set
+            name="productImages"
+            lazy="false"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+<key  column="product_id"></key>
+<one-to-many class="com.org.fashtag.model.ProductImages"/>
+</set>
+
+
+<set
+            name="productToDesignAttributeSpecification"
+            lazy="false"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+<key  column="product_id"></key>
+<one-to-many class="com.org.fashtag.model.ProductToDesignAttributeSpecification"/>
+</set>
+
+</class>
+
+ <query name="product.isProductExists"><![CDATA[
+select count(prod.id) from Product as prod where prod.id =:prodId
+        ]]></query>
+ 
+ 
+ 
+ <query name="prod.fetchSimilarPorducts"><![CDATA[
+        from Product as prod where prod.category.id=:prodCatId and  prod.id!=:prodId and prod.activeStatus=true
+ ]]></query>
+               
+        
+
+<query name="prod.getProductDesigns"><![CDATA[
+     select pdas from ProductToDesignAttributeSpecification as pdas join pdas.designAttributeSpecification as das  join das.designAttribute as da where pdas.product.id=:productId order by da.id 
+]]></query>
+
+
+
+</hibernate-mapping>

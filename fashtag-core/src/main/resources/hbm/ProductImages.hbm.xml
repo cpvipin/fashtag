@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.ProductImages" 
+   table="product_images"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+      <many-to-one
+            name="product"
+            class="com.org.fashtag.model.Product"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="product_id" 
+            />
+        </many-to-one>
+        
+        
+      
+<property
+            name="image"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="image"
+            length="500"
+    />
+    
+    
+    
+      <property
+            name="sortOrder"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="sort_order"
+    />
+    
+    
+</class>
+
+<query name="pi.getProductImagesByProduct"><![CDATA[
+ from ProductImages as pi where pi.product.id=:productId order by sortOrder]]></query>
+</hibernate-mapping>

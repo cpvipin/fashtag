@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class 
+   name="com.org.fashtag.model.CustomerBodyMeasurement" 
+   table="customer_body_measurement"
+   >
+
+
+<id  name="id"   column="id"    type="java.lang.Integer"   >
+<generator class="identity"></generator>
+</id>
+
+     
+        
+        
+        <many-to-one
+            name="customerProfile"
+            class="com.org.fashtag.model.CustomerProfile"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="customer_profile_id" 
+            />
+        </many-to-one>
+        
+        
+        
+        <many-to-one
+            name="bodyMeasurementAttribute"
+            class="com.org.fashtag.model.BodyMeasurementAttribute"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            lazy="false"
+        >
+            <column
+                name="measurement_attribute_id" 
+            />
+        </many-to-one>
+        
+        
+    
+    <property
+            name="value"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="value"
+    />
+    
+      <property
+            name="unit"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="unit"
+            length="5"
+    />
+    
+    
+  
+    
+    
+</class>
+
+
+<query name="custmeas.deleteCustomerMeasurementsByProfile"><![CDATA[
+delete from CustomerBodyMeasurement where customerProfile.id=:profileId ]]></query>
+
+
+
+</hibernate-mapping>
